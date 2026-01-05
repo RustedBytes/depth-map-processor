@@ -1,0 +1,24 @@
+[package]
+name = "depth-map-processor"
+version = "0.1.0"
+edition = "2024"
+description = "Normalize 16-bit PNG depth maps to 8-bit grayscale with optional Turbo visualization."
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/RustedBytes/depth-map-processor"
+authors = ["RustedBytes <dev@rustedbytes.com>"]
+homepage = "https://github.com/RustedBytes/depth-map-processor"
+keywords = ["depth-map", "image-processing", "png", "colormap", "cli"]
+categories = ["command-line-utilities", "multimedia::images"]
+exclude = ["target/**", "test.png"]
+
+[dependencies]
+clap = { version = "4.5.54", features = ["derive"] }
+colorgrad = { version = "0.8.0", features = ["preset"] }
+image = "0.25.9"
+
+[profile.release]
+lto = true        # Enable Link Time Optimization
+codegen-units = 1 # Reduce parallel code generation units for better optimization
+strip = true      # Strip symbols from binary to reduce size
+opt-level = 3     # Maximum optimization level
